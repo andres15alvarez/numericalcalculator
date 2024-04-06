@@ -8,8 +8,11 @@
 """
 import numpy as np
 
+from utils.errors import relative_error
+from utils.result import Result
 
-def bisection(f, xl, xu, tol = 1.0e-5, max_iter = 150):
+
+def bisection(f, xl, xu, results: list, tol = 1.0e-5, max_iter = 150):
     f1 = f(xl)
     if f1 == 0.0:
         return xl
@@ -20,9 +23,15 @@ def bisection(f, xl, xu, tol = 1.0e-5, max_iter = 150):
         raise Exception(f"La ecuacion no tiene raiz en el intervalo [{xl}, {xu}]")
     xr = 0.0
 
-    for _ in range(max_iter):
+    for i in range(1, max_iter + 1):
         xr = xl + ((xu - xl) / 2)
         f3 = f(xr)
+
+        if len(results) > 0:
+            xr_prev = results[i - 2].point[0]
+        else: xr_prev = 0
+
+        results.append(Result(i, (xr, f3), relative_error(xr, xr_prev)))
 
         if f3 == 0.0:
             return xr
@@ -31,11 +40,11 @@ def bisection(f, xl, xu, tol = 1.0e-5, max_iter = 150):
             return xr
 
         if np.sign(f1) != np.sign(f3):
-            xl = xr
-            f1 = f3
-
-        if np.sign(f2) != np.sign(f3):
             xu = xr
             f2 = f3
+
+        if np.sign(f2) != np.sign(f3):
+            xl = xr
+            f1 = f3
 
     return xr

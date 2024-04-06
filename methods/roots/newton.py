@@ -6,11 +6,20 @@
 """
 import numpy as np
 
+from utils.errors import relative_error
+from utils.result import Result
 
-def newton(f, df, x, tol = 1.0e-5, max_iter = 150):
+
+def newton(f, df, x, results: list, tol = 1.0e-5, max_iter = 150):
     xn = x
-    for _ in range(0, max_iter):
+    for i in range(1, max_iter + 1):
         fxn = f(xn)
+
+        if len(results) > 0:
+            xn_prev = results[i - 2].point[0]
+        else: xn_prev = 0
+        results.append(Result(i, (xn, fxn), relative_error(xn, xn_prev)))
+
         if np.abs(fxn) < tol:
             return xn
 
