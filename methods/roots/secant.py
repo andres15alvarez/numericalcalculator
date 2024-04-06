@@ -1,4 +1,8 @@
-def secant(f, a, b, max_iter = 150):
+from utils.errors import relative_error
+from utils.result import Result
+
+
+def secant(f, a, b, results: list, max_iter = 150):
     """Approximate solution of f(x)=0 on interval [a,b] by the secant method.
 
     Parameters
@@ -28,20 +32,25 @@ def secant(f, a, b, max_iter = 150):
     1.6180257510729614
     """
     if f(a)*f(b) >= 0:
-        print("Secant method fails.")
-        return None
+        raise Exception("No hay raiz en el intervalo")
     an = a
     bn = b
     xn = None
-    for _ in range(max_iter):
+    for i in range(1, max_iter + 1):
         xn = an - f(an)*(bn - an)/(f(bn) - f(an))
-        f_xn = f(xn)
-        if f(an)*f_xn < 0:
+        fxn = f(xn)
+
+        if len(results) > 0:
+            xn_prev = results[i - 2].point[0]
+        else: xn_prev = 0
+        results.append(Result(i, (xn, fxn), relative_error(xn, xn_prev)))
+
+        if f(an)*fxn < 0:
             an = an
             bn = xn
-        elif f(bn)*f_xn < 0:
+        elif f(bn)*fxn < 0:
             an = xn
             bn = bn
-        elif f_xn == 0:
+        elif fxn == 0:
             return xn
     return xn
