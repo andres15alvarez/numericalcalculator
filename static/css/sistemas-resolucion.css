@@ -1,0 +1,33 @@
+.result-wrap {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.resume {
+    background: rgba(0,0,0,.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.resume .control-method {
+    background-color: rgba(0,0,0,.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.resume p:not(:first-child) {
+    margin-top: 10px;
+}
+
+.method {
+    width: calc(100% / 3 - 20px);
+}

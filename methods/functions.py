@@ -21,11 +21,35 @@ def get_f1c_range():
 def f2b(x):
     return np.exp(x) - 3 * np.square(x)
 
+def df2b(x):
+    return np.exp(x) - 6 * x
+
 def get_f2b_range():
     return 3, 5
 
 def f2c(x):
     return np.log(x - 1) + np.cos(x - 1)
 
+def df2c(x):
+    return (1 / (x - 1)) - np.sin(x - 1)
+
 def get_f2c_range():
     return 1.3, 2
+
+A = np.array([
+    [5, 8, 3],
+    [6, 2, 4],
+    [9, 3, 1]
+])
+
+B = np.array([
+    [8, 5, 6],
+    [3, 6, 9],
+    [2, 4, 7]
+])
+
+C = np.array([
+    [8, 5, 6],
+    [12, 9, 3],
+    [1, 4, 15]
+])
