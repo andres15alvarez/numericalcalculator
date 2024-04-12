@@ -5,6 +5,8 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import HTMLResponse
 
 from methods.functions import (
+    b1,
+    b2,
     df2b,
     df2c,
     f1b,
@@ -14,11 +16,16 @@ from methods.functions import (
     get_f1b_range,
     get_f1c_range,
     get_f2b_range,
-    get_f2c_range
+    get_f2c_range,
+    matrix1,
+    matrix2,
 )
 from methods.roots.bisection import bisection
 from methods.roots.newton import newton
 from methods.roots.secant import secant
+from methods.system_equations.gauss import gauss
+from methods.system_equations.gauss_seidel import gauss_seidel
+from methods.system_equations.jacobi import jacobi
 from utils.image import generate_image
 
 
@@ -162,8 +169,30 @@ def secant2c(request: Request):
 
 @app.get("/equationssystem/1", response_class=HTMLResponse)
 def equationssystem(request: Request):
-    return templates.TemplateResponse(request, "equationssystem_solution.html")
+    gauss_sol = gauss(matrix1, b1)
+    gauss_seidel_sol = gauss_seidel(matrix1, b1)
+    jacobi_sol = jacobi(matrix1, b1)
+    return templates.TemplateResponse(
+        request,
+        "equationssystem_solution.html",
+        {
+            "gauss_sol": gauss_sol,
+            "gauss_seidel_sol": gauss_seidel_sol,
+            "jacobi_sol": jacobi_sol
+        }
+    )
 
 @app.get("/equationssystem/2", response_class=HTMLResponse)
 def equationssystem(request: Request):
-    return templates.TemplateResponse(request, "equationssystem_solution.html")
+    gauss_sol = gauss(matrix2, b2)
+    gauss_seidel_sol = gauss_seidel(matrix2, b2)
+    jacobi_sol = jacobi(matrix2, b2)
+    return templates.TemplateResponse(
+        request,
+        "equationssystem_solution.html",
+        {
+            "gauss_sol": gauss_sol,
+            "gauss_seidel_sol": gauss_seidel_sol,
+            "jacobi_sol": jacobi_sol
+        }
+    )

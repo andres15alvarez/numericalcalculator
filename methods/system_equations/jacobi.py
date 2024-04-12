@@ -9,7 +9,7 @@ def jacobi(A, b, tol = 1e-5, max_iterations = 150):
         x_old  = x.copy()
         x[:] = (b - np.dot(T, x)) / np.diagonal(A)
 
-        if np.abs(x - x_old) / np.abs(x) < tol:
+        if np.abs(x - x_old).all() / np.abs(x).all() < tol:
             break
 
     return x
