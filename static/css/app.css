@@ -1,0 +1,35 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --pc-light: #26d195;
+    --pc-dark: #086e4a;
+}
+
+html {
+    font-family: Arial;
+    background-color: #F4F5F7;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px 10px;
+    margin-bottom: 20px;
+}
+
+.back-to {
+    margin: 0 auto;
+    margin-bottom: 30px;
+    text-decoration: none;
+    color: #000;
+    border-bottom: 2px solid var(--pc-light);
+    display: block;
+    width: max-content;
+    transition: all .2s ease;
+}
+.back-to:hover {
+    border-bottom: 2px solid var(--pc-dark);
+}

@@ -1,0 +1,57 @@
+.result-wrap {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.img-wrap {
+    width: calc(100% - 400px - 20px);
+    background: rgba(0,0,0,.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+.img-wrap img {
+    max-width: 100%;
+    margin: 0 auto;
+    display: block;
+}
+
+.resume {
+    background: rgba(0,0,0,.1);
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+}
+
+.resume .control-method {
+    background-color: rgba(0,0,0,.1);
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.resume p:not(:first-child) {
+    margin-top: 10px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+table {
+    margin-top: 20px;
+}
+table td, table th {
+    padding: 10px;
+}
+table td {
+    border-top: 1px solid #000;
+}
+table td:nth-child(2),
+table th:nth-child(2) {
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+}
