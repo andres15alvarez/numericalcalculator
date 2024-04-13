@@ -5,7 +5,9 @@ Solves [a]{b} = {x} by Gauss elimination.
 import numpy as np
 
 
-def gauss(a,b):
+def gauss(a, b):
+    a = a.copy()
+    b = b.copy()
     n = len(b)
     # Elimination Phase
     for k in range(0, n-1):

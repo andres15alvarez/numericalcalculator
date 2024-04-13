@@ -22,3 +22,8 @@ Then install the mathematicals and graphicals libraries:
 ```
     pip install -r requirements.txt
 ```
+
+To run the program execute the followin command:
+```
+    uvicorn main:app
+```

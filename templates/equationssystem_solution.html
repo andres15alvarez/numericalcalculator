@@ -10,44 +10,43 @@
     <body>
         <div class="content-wrap">
             <h1>Resolución del sistema/problema mediante los tres métodos</h1>
-            <a href="/sistemas" class="back-to">Regresar al menú de métodos</a>
+            <a href="/equationssystem" class="back-to">Regresar al menú de métodos</a>
             <div class="result-wrap">
                 <div class="method">
                     <h2>Solución mediante Método de Eliminación de Gauss Simple</h2>
                     <div class="resume">
-                        <p>Tiempo de ejecución: <b><!--VALOR--></b></p>
-                        <p>Solución/Resultado: <b><!--VALOR--></b></p>
-                        <p>Error relativo: <b><!--VALOR--></b></p>
+                        <p>Tiempo de ejecución: <b>{{ gauss_time }}</b> segundos</p>
+                        <p>Solución/Resultado: <b>{{ gauss_sol }}</b></p>
                         <div class="control-method">
-                            <p>Solución/Resultado (según software): <b><!--VALOR--></b></p>
+                            <p>Solución/Resultado (según software): <b>{{ software_sol }}</b></p>
                         </div>
                     </div>
                 </div>
                 <div class="method">
                     <h2>Solución mediante Método de Jacobi</h2>
                     <div class="resume">
-                        <p>Tiempo de ejecución: <b><!--VALOR--></b></p>
-                        <p>Número de iteraciones: <b><!--VALOR--></b></p>
-                        <p>Solución/Resultado: <b><!--VALOR--></b></p>
-                        <p>Error relativo: <b><!--VALOR--></b></p>
+                        <p>Tiempo de ejecución: <b>{{ jacobi_time }}</b> segundos</p>
+                        <p>Número de iteraciones: <b>{{ jacobi_iter }}</b></p>
+                        <p>Solución/Resultado: <b>{{ jacobi_sol }}</b></p>
+                        <p>Error relativo: <b>{{ jacobi_error }}</b></p>
                         <div class="control-method">
-                            <p>Solución/Resultado (según software): <b><!--VALOR--></b></p>
+                            <p>Solución/Resultado (según software): <b>{{ software_sol }}</b></p>
                         </div>
                     </div>
                 </div>
                 <div class="method">
-                    <h2>Solución mediante Método de Gauss-Sidel</h2>
+                    <h2>Solución mediante Método de Gauss-Seidel</h2>
                     <div class="resume">
-                        <p>Tiempo de ejecución: <b><!--VALOR--></b></p>
-                        <p>Número de iteraciones: <b><!--VALOR--></b></p>
-                        <p>Solución/Resultado: <b><!--VALOR--></b></p>
-                        <p>Error relativo: <b><!--VALOR--></b></p>
+                        <p>Tiempo de ejecución: <b>{{ gauss_seidel_time }}</b> segundos</p>
+                        <p>Número de iteraciones: <b>{{ gauss_seidel_iter }}</b></p>
+                        <p>Solución/Resultado: <b>{{ gauss_seidel_sol }}</b></p>
+                        <p>Error relativo: <b>{{ gauss_seidel_error }}</b></p>
                         <div class="control-method">
-                            <p>Solución/Resultado (según software): <b><!--VALOR--></b></p>
+                            <p>Solución/Resultado (según software): <b>{{ software_sol }}</b></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </body>
 </html>

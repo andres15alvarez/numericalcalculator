@@ -8,7 +8,7 @@
 }
 
 .img-wrap {
-    width: calc(100% - 400px - 20px);
+    width: calc(100% - 570px - 20px);
     background: rgba(0,0,0,.1);
     padding: 20px;
     border-radius: 10px;
@@ -23,7 +23,7 @@
     background: rgba(0,0,0,.1);
     padding: 20px;
     border-radius: 10px;
-    width: 400px;
+    width: 570px;
 }
 
 .resume .control-method {

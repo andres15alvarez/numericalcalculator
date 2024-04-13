@@ -30,13 +30,13 @@ def bisection(f, xl, xu, results: list, tol = 1.0e-5, max_iter = 150):
         if len(results) > 0:
             xr_prev = results[i - 2].point[0]
         else: xr_prev = 0
+        error = relative_error(xr, xr_prev)
+        results.append(Result(i, (xr, f3), error))
 
-        results.append(Result(i, (xr, f3), relative_error(xr, xr_prev)))
-
-        if f3 == 0.0:
+        if error <= tol:
             return xr
 
-        if np.abs(f3) < tol:
+        if f3 == 0.0:
             return xr
 
         if np.sign(f1) != np.sign(f3):
