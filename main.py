@@ -207,8 +207,8 @@ def secant2c(request: Request):
 @app.get("/equationssystem/1", response_class=HTMLResponse)
 def equationssystem(request: Request):
     gauss_sol = gauss(matrix1, b1)
-    gauss_seidel_sol = gauss_seidel(matrix1, b1)
-    jacobi_sol = jacobi(matrix1, b1)
+    gauss_seidel_sol, gauss_seidel_iter = gauss_seidel(matrix1, b1)
+    jacobi_sol, jacobi_iter = jacobi(matrix1, b1)
     software_sol = np.linalg.solve(matrix1, b1)
     return templates.TemplateResponse(
         request,
@@ -217,15 +217,17 @@ def equationssystem(request: Request):
             "gauss_sol": gauss_sol,
             "gauss_seidel_sol": gauss_seidel_sol,
             "jacobi_sol": jacobi_sol,
-            "software_sol": software_sol
+            "software_sol": software_sol,
+            "jacobi_iter": jacobi_iter,
+            "gauss_seidel_iter": gauss_seidel_iter
         }
     )
 
 @app.get("/equationssystem/2", response_class=HTMLResponse)
 def equationssystem(request: Request):
     gauss_sol = gauss(matrix2, b2)
-    gauss_seidel_sol = gauss_seidel(matrix2, b2)
-    jacobi_sol = jacobi(matrix2, b2)
+    gauss_seidel_sol, gauss_seidel_iter = gauss_seidel(matrix2, b2)
+    jacobi_sol, jacobi_iter = jacobi(matrix2, b2)
     software_sol = np.linalg.solve(matrix2, b2)
     return templates.TemplateResponse(
         request,
@@ -234,6 +236,8 @@ def equationssystem(request: Request):
             "gauss_sol": gauss_sol,
             "gauss_seidel_sol": gauss_seidel_sol,
             "jacobi_sol": jacobi_sol,
-            "software_sol": software_sol
+            "software_sol": software_sol,
+            "jacobi_iter": jacobi_iter,
+            "gauss_seidel_iter": gauss_seidel_iter
         }
     )
