@@ -209,14 +209,15 @@ def equationssystem(request: Request):
     gauss_sol = gauss(matrix1, b1)
     gauss_seidel_sol = gauss_seidel(matrix1, b1)
     jacobi_sol = jacobi(matrix1, b1)
-    x = np.linalg.solve(matrix1, b1)
+    software_sol = np.linalg.solve(matrix1, b1)
     return templates.TemplateResponse(
         request,
         "equationssystem_solution.html",
         {
             "gauss_sol": gauss_sol,
             "gauss_seidel_sol": gauss_seidel_sol,
-            "jacobi_sol": jacobi_sol
+            "jacobi_sol": jacobi_sol,
+            "software_sol": software_sol
         }
     )
 
@@ -225,12 +226,14 @@ def equationssystem(request: Request):
     gauss_sol = gauss(matrix2, b2)
     gauss_seidel_sol = gauss_seidel(matrix2, b2)
     jacobi_sol = jacobi(matrix2, b2)
+    software_sol = np.linalg.solve(matrix2, b2)
     return templates.TemplateResponse(
         request,
         "equationssystem_solution.html",
         {
             "gauss_sol": gauss_sol,
             "gauss_seidel_sol": gauss_seidel_sol,
-            "jacobi_sol": jacobi_sol
+            "jacobi_sol": jacobi_sol,
+            "software_sol": software_sol
         }
     )
