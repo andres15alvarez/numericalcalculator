@@ -1,3 +1,4 @@
+import time
 from fastapi import FastAPI, Request
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -28,6 +29,7 @@ from methods.roots.secant import secant
 from methods.system_equations.gauss import gauss
 from methods.system_equations.gauss_seidel import gauss_seidel
 from methods.system_equations.jacobi import jacobi
+from utils.errors import relative_error
 from utils.image import generate_image
 
 
@@ -206,9 +208,17 @@ def secant2c(request: Request):
 
 @app.get("/equationssystem/1", response_class=HTMLResponse)
 def equationssystem(request: Request):
+    s_time = time.time()
     gauss_sol = gauss(matrix1, b1)
+    gauss_time = time.time() - s_time
+    s_time = time.time()
     gauss_seidel_sol, gauss_seidel_iter = gauss_seidel(matrix1, b1)
+    gauss_seidel_time = time.time() - s_time
+    s_time = time.time()
     jacobi_sol, jacobi_iter = jacobi(matrix1, b1)
+    jacobi_time = time.time() - s_time
+    jacobi_error = relative_error(gauss_sol, jacobi_sol)
+    gauss_seidel_error = relative_error(gauss_sol, gauss_seidel_sol)
     software_sol = np.linalg.solve(matrix1, b1)
     return templates.TemplateResponse(
         request,
@@ -219,15 +229,28 @@ def equationssystem(request: Request):
             "jacobi_sol": jacobi_sol,
             "software_sol": software_sol,
             "jacobi_iter": jacobi_iter,
-            "gauss_seidel_iter": gauss_seidel_iter
+            "gauss_seidel_iter": gauss_seidel_iter,
+            "gauss_time": gauss_time,
+            "gauss_seidel_time": gauss_seidel_time,
+            "jacobi_time": jacobi_time,
+            "jacobi_error": jacobi_error,
+            "gauss_seidel_error": gauss_seidel_error
         }
     )
 
 @app.get("/equationssystem/2", response_class=HTMLResponse)
 def equationssystem(request: Request):
+    s_time = time.time()
     gauss_sol = gauss(matrix2, b2)
+    gauss_time = time.time() - s_time
+    s_time = time.time()
     gauss_seidel_sol, gauss_seidel_iter = gauss_seidel(matrix2, b2)
+    gauss_seidel_time = time.time() - s_time
+    s_time = time.time()
     jacobi_sol, jacobi_iter = jacobi(matrix2, b2)
+    jacobi_time = time.time() - s_time
+    jacobi_error = relative_error(gauss_sol, jacobi_sol)
+    gauss_seidel_error = relative_error(gauss_sol, gauss_seidel_sol)
     software_sol = np.linalg.solve(matrix2, b2)
     return templates.TemplateResponse(
         request,
@@ -238,6 +261,11 @@ def equationssystem(request: Request):
             "jacobi_sol": jacobi_sol,
             "software_sol": software_sol,
             "jacobi_iter": jacobi_iter,
-            "gauss_seidel_iter": gauss_seidel_iter
+            "gauss_seidel_iter": gauss_seidel_iter,
+            "gauss_time": gauss_time,
+            "gauss_seidel_time": gauss_seidel_time,
+            "jacobi_time": jacobi_time,
+            "jacobi_error": jacobi_error,
+            "gauss_seidel_error": gauss_seidel_error
         }
     )
