@@ -61,7 +61,7 @@ def bisection1b(request: Request):
     f_value = f1b(value)
     software_value = optimize.bisect(f1b, a, b, xtol=1.0e-5, maxiter=150)
     software_f_value = f1b(software_value)
-    generate_image(results, "bisection1b.png")
+    generate_image(results, "bisection1b.png", "Function 1.b with Bisection Method")
     image_path = request.url_for("static", path="images/bisection1b.png")
     return templates.TemplateResponse(
         request,
@@ -92,7 +92,7 @@ def bisection1c(request: Request):
     f_value = f1c(value)
     software_value = optimize.bisect(f1c, a, b, xtol=1.0e-5, maxiter=150)
     software_f_value = f1c(software_value)
-    generate_image(results, "bisection1c.png")
+    generate_image(results, "bisection1c.png", "Function 1.c with Bisection Method")
     image_path = request.url_for("static", path="images/bisection1c.png")
     return templates.TemplateResponse(
         request,
@@ -115,7 +115,7 @@ def newton2b(request: Request):
     f_value = f2b(value)
     software_value = optimize.newton(f2b, 4, df2b, tol=1.0e-5, maxiter=150)
     software_f_value = f2b(software_value)
-    generate_image(results, "newton2b.png")
+    generate_image(results, "newton2b.png", "Function 2.b with Newton Method")
     image_path = request.url_for("static", path="images/newton2b.png")
     return templates.TemplateResponse(
         request,
@@ -138,7 +138,7 @@ def newton2c(request: Request):
     f_value = f2c(value)
     software_value = optimize.newton(f2c, 1.6, df2c, tol=1.0e-5, maxiter=150)
     software_f_value = f2c(software_value)
-    generate_image(results, "newton2c.png")
+    generate_image(results, "newton2c.png", "Function 2.c with Newton Method")
     image_path = request.url_for("static", path="images/newton2c.png")
     return templates.TemplateResponse(
         request,
@@ -164,7 +164,7 @@ def secant2b(request: Request):
         f2b, method="secant", x0=a, x1=b, xtol=1.0e-5, maxiter=150
     ).root
     software_f_value = f2b(software_value)
-    generate_image(results, "secant2b.png")
+    generate_image(results, "secant2b.png", "Function 2.b with Secant Method")
     image_path = request.url_for("static", path="images/secant2b.png")
     return templates.TemplateResponse(
         request,
@@ -190,7 +190,7 @@ def secant2c(request: Request):
         f2c, method="secant", x0=a, x1=b, xtol=1.0e-5, maxiter=150
     ).root
     software_f_value = f2c(software_value)
-    generate_image(results, "secant2c.png")
+    generate_image(results, "secant2c.png", "Function 2.c with Secant Method")
     image_path = request.url_for("static", path="images/secant2c.png")
     return templates.TemplateResponse(
         request,
