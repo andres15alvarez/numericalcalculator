@@ -18,7 +18,11 @@ def newton(f, df, x, results: list, tol = 1.0e-5, max_iter = 150):
         if len(results) > 0:
             xn_prev = results[i - 2].point[0]
         else: xn_prev = 0
-        results.append(Result(i, (xn, fxn), relative_error(xn, xn_prev)))
+        error = relative_error(xn, xn_prev)
+        results.append(Result(i, (xn, fxn), error))
+
+        if error <= tol:
+            return xn
 
         if np.abs(fxn) < tol:
             return xn
